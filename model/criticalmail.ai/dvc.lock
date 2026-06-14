@@ -1,7 +1,7 @@
 schema: '2.0'
 stages:
   process_data:
-    cmd: python src/data/data_main.py --force
+    cmd: python -m src.data.data_main
     deps:
     - path: data/raw/dataset.csv
       hash: md5
@@ -9,10 +9,19 @@ stages:
       size: 1505981
     - path: src/data/data_main.py
       hash: md5
-      md5: ec20620d73b88556808849d8b39a2410
-      size: 2523
+      md5: a5d4bf0958d03613fd3d7891d228d663
+      size: 3698
+    - path: src/visualization/data_visualization.py
+      hash: md5
+      md5: f28b15506466309f960e5cdac5f941a8
+      size: 2080
     outs:
     - path: data/processed/processed_dataset.csv
       hash: md5
-      md5: 1e1f0bdaf341df32a71d1d70fa776bd5
-      size: 1790250
+      md5: 8e0a8898d6761491e6067ca59e1f1ae4
+      size: 1796952
+    - path: reports/figures/
+      hash: md5
+      md5: e0e21512a05f8cbd2e0e0d4f1d248f7a.dir
+      size: 154476
+      nfiles: 3

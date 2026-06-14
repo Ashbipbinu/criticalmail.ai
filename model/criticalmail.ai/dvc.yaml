@@ -1,8 +1,10 @@
 stages:
   process_data:
-    cmd: python src/data/data_main.py --force
+    cmd: python -m src.data.data_main
     deps:
     - data/raw/dataset.csv
     - src/data/data_main.py
+    - src/visualization/data_visualization.py
     outs:
     - data/processed/processed_dataset.csv
+    - reports/figures/

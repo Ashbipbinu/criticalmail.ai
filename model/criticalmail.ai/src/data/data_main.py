@@ -3,7 +3,9 @@ import mlflow
 import mlflow.data
 import logging
 
-from data_services import Data_Services
+from src.data.data_services import Data_Services
+from src.visualization.data_visualization import Data_VIsualization
+
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
@@ -20,6 +22,7 @@ project_root = os.path.dirname(os.path.dirname(current_dir))
 data_path = os.path.join(project_root, "data", "raw", "dataset.csv")
 
 data_serv = Data_Services()
+data_vis = Data_VIsualization()
 
 with mlflow.start_run(run_name="Data_Cleaning_and_Tokenization") as run:
     try:
@@ -42,11 +45,26 @@ with mlflow.start_run(run_name="Data_Cleaning_and_Tokenization") as run:
             data_serv.tokenize_text
         )
 
+        # Rejecting the irrelevant fields
         processed_data = merged_data[
             ['message_body', 'message_body_tokens', 'email_criticality']
             ]
 
         logging.info("Tokenization of words completed")
+
+        # Visualization of data
+        fig_location = os.path.join(project_root, 'reports', 'figures')
+        os.makedirs(fig_location, exist_ok=True)
+
+        count_file_name = "count_class.jpg"
+        data_vis.count_class(processed_data, fig_location, count_file_name)
+
+        class_vs_len_file_name = "class_vs_len.jpg"
+        data_vis.len_vs_class(processed_data, fig_location,
+                              class_vs_len_file_name)
+
+        wcloud_file_name = "word_cloud.jpg"
+        data_vis.words_cloud(processed_data, fig_location, wcloud_file_name)
 
         # Saving the file to the data/processed
         processed_dir = os.path.join(project_root, "data", "processed")
@@ -67,6 +85,18 @@ with mlflow.start_run(run_name="Data_Cleaning_and_Tokenization") as run:
 
         mlflow.log_artifact(output_path, artifact_path="datasets")
         logger.info("Physical CSV file logged to MLflow Artifacts.")
+
+        # Logging the figures to MLFLOW
+        if os.path.exists(fig_location):
+            mlflow.log_artifacts(fig_location, artifact_path="plots")
+            logger.info(
+                "All visualization images logged"
+                "to MLflow Artifacts successfully."
+                )
+        else:
+            logger.warning(
+                f"Visualization directory not found at: {fig_location}"
+                )
 
     except Exception as ex:
         logger.exception("Something went wrong in data_main")

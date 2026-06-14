@@ -1,0 +1,9 @@
+digest: a786a266
+name: processed_email_dataset
+profile: '{"num_rows": 2259, "num_elements": 9036}'
+schema: '{"mlflow_colspec": [{"type": "string", "name": "message_body", "required":
+  true}, {"type": "array", "items": {"type": "string"}, "name": "message_body_tokens",
+  "required": true}, {"type": "long", "name": "email_criticality", "required": true},
+  {"type": "long", "name": "word_length", "required": true}]}'
+source: '{"uri": "C:\\Users\\LENOVO\\Desktop\\Email System\\model\\criticalmail.ai\\data\\processed\\processed_dataset.csv"}'
+source_type: local
