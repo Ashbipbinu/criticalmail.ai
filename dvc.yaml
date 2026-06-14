@@ -1,0 +1,8 @@
+stages:
+  process_data:
+    cmd: python src/data/data_main.py
+    deps:
+      - data/raw/dataset.csv
+      - src/data/data_main.py
+    outs:
+      - data/processed/processed_dataset.csv

@@ -26,15 +26,16 @@ class Data_Services:
         return self.data
 
     def tokenize_text(self, text: str = '') -> list[str]:
-        if text != '':
-            doc = nlp(text)
+        if not isinstance(text, str) or not text.strip():
+            return []
+       
+        doc = nlp(text)
+        token = [
+            token.lemma_.lower()
+            for token in doc
+            if not token.is_stop
+            and not token.is_punct
+            and not token.is_space
+        ]
 
-            token = [
-                token.lemma_.lower()
-                for token in doc
-                if not token.is_stop
-                and not token.is_punct
-                and not token.is_space
-            ]
-
-            return token
+        return token

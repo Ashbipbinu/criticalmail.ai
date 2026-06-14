@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/727642819719870305/340a7820120547c2ac0ee6807127ba33/artifacts
+deleted_time: 1781464038927
+end_time: 1781463542468
+entry_point_name: ''
+experiment_id: '727642819719870305'
+lifecycle_stage: deleted
+run_id: 340a7820120547c2ac0ee6807127ba33
+run_name: Data_Cleaning_and_Tokenization
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1781463466620
+status: 3
+tags: []
+user_id: LENOVO

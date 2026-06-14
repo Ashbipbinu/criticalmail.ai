@@ -1,0 +1,17 @@
+digest: 320d9aae
+name: processed_email_dataset
+profile: '{"num_rows": 2259, "num_elements": 31626}'
+schema: '{"mlflow_colspec": [{"type": "string", "name": "subject", "required": true},
+  {"type": "string", "name": "sender", "required": true}, {"type": "string", "name":
+  "receiver", "required": true}, {"type": "string", "name": "timestamp", "required":
+  true}, {"type": "string", "name": "message_body", "required": true}, {"type": "string",
+  "name": "thread_id", "required": true}, {"type": "string", "name": "email_types",
+  "required": true}, {"type": "string", "name": "email_status", "required": true},
+  {"type": "long", "name": "email_criticality", "required": true}, {"type": "string",
+  "name": "product_types", "required": true}, {"type": "string", "name": "agent_effectivity",
+  "required": true}, {"type": "string", "name": "agent_efficiency", "required": true},
+  {"type": "double", "name": "customer_satisfaction", "required": true}, {"type":
+  "array", "items": {"type": "string"}, "name": "message_body_tokens", "required":
+  true}]}'
+source: '{"uri": "C:\\Users\\LENOVO\\Desktop\\Email System\\model\\criticalmail.ai\\data\\processed\\processed_dataset.csv"}'
+source_type: local
